@@ -3,9 +3,7 @@ import Record from "@/models/Record";
 
 export async function GET(request) {
   try {
-    console.log("get ranking");
     await dbConnect();
-    console.log("dbConnect");
     const { searchParams } = new URL(request.url);
     const gameId = searchParams.get("gameId");
 

@@ -28,14 +28,12 @@ async function dbConnect() {
     });
   }
   try {
-    console.log("cached.promise: ", cached.promise);
     cached.conn = await cached.promise;
   } catch (e) {
     console.log("e: ", e);
     cached.promise = null;
     throw e;
   }
-
   return cached.conn;
 }
 

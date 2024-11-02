@@ -376,7 +376,15 @@ export default function JigsawPuzzle({
             />
           ))}
       </div>
-      <Box fontWeight={700} fontSize={"28px"} p="8px" textAlign={"center"}>
+      <Box
+        fontWeight={700}
+        fontSize={"28px"}
+        textAlign={"center"}
+        position={"fixed"}
+        color="yellow"
+        top="10px"
+        right="10px"
+      >
         {formatTime(timeCount)}
       </Box>
     </div>
