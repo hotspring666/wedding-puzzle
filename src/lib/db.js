@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGO_URI;
-console.log("MONGODB_URI: ", MONGODB_URI);
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -16,7 +15,6 @@ if (!cached) {
 }
 
 async function dbConnect() {
-  console.log("dbConnect: " + MONGODB_URI);
   if (cached.conn) {
     return cached.conn;
   }
@@ -30,8 +28,10 @@ async function dbConnect() {
     });
   }
   try {
+    console.log("cached.promise: ", cached.promise);
     cached.conn = await cached.promise;
   } catch (e) {
+    console.log("e: ", e);
     cached.promise = null;
     throw e;
   }
