@@ -2,19 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Box } from "@mui/material";
-const generateInitialTileState = (rows, columns) => {
-  return Array.from(Array(rows * columns).keys()).map((position) => ({
-    correctPosition: position,
-    tileHeight: 1 / rows, // 使用百分比表示高度
-    tileWidth: 1 / columns, // 使用百分比表示寬度
-    tileOffsetX: (position % columns) / columns, // 使用百分比表示X偏移
-    tileOffsetY: Math.floor(position / columns) / rows, // 使用百分比表示Y偏移
-    currentPosXPerc: Math.random() * (1 - 1 / columns), // 隨機X位置（百分比）
-    currentPosYPerc: Math.random() * (1 - 1 / rows), // 隨機Y位置（百分比）
-    solved: false,
-    connectedTiles: [],
-  }));
-};
+
 const solveTolerancePercentage = 0.028;
 export default function JigsawPuzzle({
   imageSrc,
@@ -22,9 +10,6 @@ export default function JigsawPuzzle({
   columns = 4,
   onSolved = () => {},
 }) {
-  if (!imageSrc) {
-    return null;
-  }
   const [tiles, setTiles] = useState();
   const [imageSize, setImageSize] = useState();
   const [rootSize, setRootSize] = useState();
@@ -38,6 +23,19 @@ export default function JigsawPuzzle({
   const [isRunning, setIsRunning] = useState(true);
   const solvedRef = useRef(false);
 
+  const generateInitialTileState = (rows, columns) => {
+    return Array.from(Array(rows * columns).keys()).map((position) => ({
+      correctPosition: position,
+      tileHeight: 1 / rows, // 使用百分比表示高度
+      tileWidth: 1 / columns, // 使用百分比表示寬度
+      tileOffsetX: (position % columns) / columns, // 使用百分比表示X偏移
+      tileOffsetY: Math.floor(position / columns) / rows, // 使用百分比表示Y偏移
+      currentPosXPerc: Math.random() * (1 - 1 / columns), // 隨機X位置（百分比）
+      currentPosYPerc: Math.random() * (1 - 1 / rows), // 隨機Y位置（百分比）
+      solved: false,
+      connectedTiles: [],
+    }));
+  };
   useEffect(() => {
     let intervalId;
 
@@ -95,12 +93,15 @@ export default function JigsawPuzzle({
     return () => window.removeEventListener("resize", handleResize);
   }, [imageSize]);
 
-  const onImageLoaded = useCallback((image) => {
-    const imgAspectRatio = image.width / image.height;
-    setAspectRatio(imgAspectRatio);
-    setImageSize({ width: image.width, height: image.height });
-    setTiles(generateInitialTileState(rows, columns));
-  }, []);
+  const onImageLoaded = useCallback(
+    (image) => {
+      const imgAspectRatio = image.width / image.height;
+      setAspectRatio(imgAspectRatio);
+      setImageSize({ width: image.width, height: image.height });
+      setTiles(generateInitialTileState(rows, columns));
+    },
+    [rows, columns]
+  );
 
   const onRootElementResized = useCallback(
     (args) => {
@@ -313,6 +314,9 @@ export default function JigsawPuzzle({
       .toString()
       .padStart(2, "0")}`;
   };
+  if (!imageSrc) {
+    return null;
+  }
 
   return (
     <div>
