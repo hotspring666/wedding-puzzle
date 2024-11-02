@@ -20,7 +20,7 @@ export default function JigsawPuzzle({
   const [aspectRatio, setAspectRatio] = useState(1);
   const [containerStyle, setContainerStyle] = useState({});
   const [timeCount, setTimeCount] = useState(0);
-  const [isRunning, setIsRunning] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
   const solvedRef = useRef(false);
 
   const generateInitialTileState = (rows, columns) => {
@@ -99,6 +99,7 @@ export default function JigsawPuzzle({
       setAspectRatio(imgAspectRatio);
       setImageSize({ width: image.width, height: image.height });
       setTiles(generateInitialTileState(rows, columns));
+      setIsRunning(true);
     },
     [rows, columns]
   );
