@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} style={{ paddingBottom: "80px" }}>
         <ToastContainer />
         <ThemeProvider theme={theme}>
           {children} <BottomNavBar />

@@ -22,6 +22,6 @@ const RecordSchema = new mongoose.Schema({
 });
 
 // 添加索引以優化查詢性能
-RecordSchema.index({ gameId: 1, number: -1 });
+RecordSchema.index({ gameId: 1, time: 1 });
 
 export default mongoose.models.Record || mongoose.model("Record", RecordSchema);
