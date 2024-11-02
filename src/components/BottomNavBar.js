@@ -7,7 +7,7 @@ import SlideshowIcon from "@mui/icons-material/Slideshow";
 import { Box } from "@mui/material";
 export default function BottomNavBar() {
   const navItems = [
-    { name: "遊戲", href: "/puzzle", icon: <VideogameAssetIcon /> },
+    { name: "遊戲", href: "/", icon: <VideogameAssetIcon /> },
     { name: "排行", href: "/dashboard", icon: <FormatListNumberedIcon /> },
     { name: "影片", href: "/videos", icon: <SlideshowIcon /> },
   ];

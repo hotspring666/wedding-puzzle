@@ -13,9 +13,9 @@ export async function GET(request) {
 
     // 獲取前 10 名最高分
     const topRecords = await Record.find({ gameId })
-      .sort({ time: 1 })
+      .sort({ time: gameId == "dinosaur" ? -1 : 1 })
       .limit(10)
-      .select("name time createdAt");
+      .select("name time");
 
     // 獲取統計數據
     const stats = await Record.aggregate([
@@ -24,7 +24,7 @@ export async function GET(request) {
         $group: {
           _id: null,
           avgScore: { $avg: "$time" },
-          maxScore: { $min: "$time" },
+          maxScore: { [gameId == "dinosaur" ? "$max" : "$min"]: "$time" },
           totalPlayers: { $addToSet: "$name" },
         },
       },

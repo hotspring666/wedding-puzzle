@@ -7,7 +7,7 @@ export async function GET(request) {
     await dbConnect();
     const { searchParams } = new URL(request.url);
     const gameId = searchParams.get("gameId");
-    const limit = Number(searchParams.get("limit")) || 10;
+    const limit = Number(searchParams.get("limit")) || 20;
 
     const query = gameId ? { gameId } : {};
 
