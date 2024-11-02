@@ -17,17 +17,51 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  touch-action: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(17, 24, 39);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.jigsaw-puzzle {
+  position: relative;
+  width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  touch-action: none;
+  border: 2px solid #cecece;
+}
+
+.jigsaw-puzzle__piece {
+  position: absolute;
+  border: 2px solid #cecece;
+  cursor: pointer;
+  z-index: 1;
+  user-select: none;
+  touch-action: none;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--solved {
+  border-color: #000;
+  z-index: 0;
+}
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--dragging {
+  z-index: 5;
+  box-shadow: 1px 1px 5px 0px #00000091;
+}
+
+@media (max-width: 768px) {
+  .jigsaw-puzzle {
+    height: calc(100vh - 60px); /* 減去頂部導航欄的高度 */
+  }
+}
+
+.jigsaw-puzzle__piece {
+  touch-action: none; /* 防止瀏覽器的默認觸摸行為 */
 }
