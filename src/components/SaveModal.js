@@ -42,7 +42,7 @@ export default function SaveModal({ openSave, setOpenSave, data }) {
             }
 
             setOpenSave(false);
-            router.push("/dashboard?tab=" + data.gameId);
+            router.push("/");
           } catch (err) {
             console.log(err);
             toast.error(`Error : ${err.message}`);
@@ -83,7 +83,7 @@ export default function SaveModal({ openSave, setOpenSave, data }) {
         <Button
           onClick={() => {
             setOpenSave(false);
-            router.push("/dashboard?tab=" + data.gameId);
+            router.push("/");
           }}
         >
           離開不存

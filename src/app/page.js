@@ -43,6 +43,9 @@ export default function Home() {
         title: "恐龍",
         backgroundColor: "#7b61ff",
       })}
+      <Box>
+        <img src={"pika.gif"} style={{ margin: "0 auto" }} />
+      </Box>
     </Box>
   );
 }
