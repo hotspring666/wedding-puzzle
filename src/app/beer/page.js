@@ -163,7 +163,7 @@ export default function BeerPushing() {
       className="flex flex-col items-center min-h-screen gap-4"
       style={{ marginTop: "30px" }}
     >
-      <div className="relative w-64" style={{ height: "calc(80vh - 80px)" }}>
+      <div className="relative w-64" style={{ height: "calc(80vh - 105px)" }}>
         <div
           ref={deskRef}
           className="desk relative h-full w-full bg-brown-200 border border-brown-300"
