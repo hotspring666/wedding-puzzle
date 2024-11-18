@@ -41,7 +41,12 @@ export default function Home() {
       {renderGame({
         gameId: "dinosaur",
         title: "恐龍",
-        backgroundColor: "#7b61ff",
+        backgroundColor: "#ffc814",
+      })}
+      {renderGame({
+        gameId: "beer",
+        title: "推酒杯",
+        backgroundColor: "#665008",
       })}
       <Box>
         <img src={"pika.gif"} style={{ margin: "0 auto" }} />

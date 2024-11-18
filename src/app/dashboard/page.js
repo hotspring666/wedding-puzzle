@@ -137,6 +137,7 @@ export default function Dashboard() {
           <TabList onChange={handleChange}>
             <Tab label="拼圖" value="puzzle" />
             <Tab label="恐龍" value="dinosaur" />
+            <Tab label="推酒杯" value="beer" />
           </TabList>
         </Box>
         {renderStats()}
