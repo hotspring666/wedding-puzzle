@@ -212,7 +212,7 @@ export default function BeerPushing() {
             disabled={isAnimating}
             className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
               isAnimating ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            } select-none user-select-none touch-action-none`}
           >
             {isPressing ? `蓄力中` : isAnimating ? "等待中..." : "推酒杯"}
           </button>
