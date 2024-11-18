@@ -134,7 +134,7 @@ export default function BeerPushing() {
   const checkScore = (position) => {
     const cupBottom = position;
     // 修正 CUP_HEIGHT 的解析
-    const cupTop = position + parseFloat(CUP_HEIGHT);
+    const cupTop = position + 100 * CUP_HEIGHT;
 
     const isCupOverlappingTarget =
       (cupBottom >= targetArea.start && cupBottom <= targetArea.end) ||
