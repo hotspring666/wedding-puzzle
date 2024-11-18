@@ -31,7 +31,7 @@ export default function Home() {
   };
   return (
     <Box style={{ overflow: "hidden" }} className="p-4">
-      <h1 className="text-2xl font-bold mb-4">遊戲排行榜</h1>
+      <h1 className="text-2xl font-bold mb-4">遊戲</h1>
       <Box my="8px">紀錄保持者有小禮物喔🎁</Box>
       {renderGame({
         gameId: "puzzle",
