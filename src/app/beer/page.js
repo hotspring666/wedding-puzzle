@@ -1,5 +1,6 @@
 "use client";
 import SaveModal from "@/components/SaveModal";
+import { Box } from "@mui/material";
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 const CUP_HEIGHT = 0.05;
 
@@ -158,8 +159,11 @@ export default function BeerPushing() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-      <div className="relative w-64" style={{ height: "70vh" }}>
+    <div
+      className="flex flex-col items-center min-h-screen gap-4"
+      style={{ marginTop: "30px" }}
+    >
+      <div className="relative w-64" style={{ height: "calc(80vh - 80px)" }}>
         <div
           ref={deskRef}
           className="desk relative h-full w-full bg-brown-200 border border-brown-300"
@@ -187,40 +191,48 @@ export default function BeerPushing() {
           />
         </div>
       </div>
-
-      <div className="flex flex-col items-center gap-2">
-        <button
-          onTouchStart={startCharging}
-          onMouseDown={startCharging}
-          onTouchEnd={pushCup}
-          onMouseUp={pushCup}
-          disabled={isAnimating}
-          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
-            isAnimating ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {isPressing ? `蓄力中` : isAnimating ? "等待中..." : "推酒杯"}
-        </button>
-
-        <div className="w-full bg-gray-200 rounded-full h-2">
-          <div
-            className={`h-2 rounded-full transition-all duration-50 ${
-              force > 100 ? "bg-red-600" : "bg-blue-600"
-            }`}
-            style={{ width: `${Math.min(force, 150)}%` }}
-          ></div>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        gap="8px"
+        width={"90%"}
+        maxWidth={"280px"}
+        m="0 auto"
+      >
+        <div>
+          <p className="text-lg">得分: {score}</p>
+          <div className="text-lg">生命: {lives}</div>
         </div>
-      </div>
+        <div className="flex flex-col gap-2">
+          <button
+            onTouchStart={startCharging}
+            onMouseDown={startCharging}
+            onTouchEnd={pushCup}
+            onMouseUp={pushCup}
+            disabled={isAnimating}
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+              isAnimating ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {isPressing ? `蓄力中` : isAnimating ? "等待中..." : "推酒杯"}
+          </button>
+
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div
+              className={`h-2 rounded-full transition-all duration-50 ${
+                force > 100 ? "bg-red-600" : "bg-blue-600"
+              }`}
+              style={{ width: `${Math.min(force, 150)}%` }}
+            ></div>
+          </div>
+        </div>
+      </Box>
+
       <SaveModal
         openSave={openSave}
         setOpenSave={setOpenSave}
         data={{ gameId: "beer", time: record }}
       />
-      <div className="text-center">
-        <p className="text-lg">
-          得分: {score} / 生命: {lives}
-        </p>
-      </div>
     </div>
   );
 }
